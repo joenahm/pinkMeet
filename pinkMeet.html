@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>PinkMeet</title>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/mainPage.css">
+	<link rel="stylesheet" href="css/chat.css">
+	<link rel="icon" href="images/icon.png">
+	<style>
+		[data-type="now"] .content__left {
+			background-image: url("images/now.jpg");
+			background-position: center;
+		}		
+
+		[data-type="next"] .content__left {
+			background-image: url("images/next.jpg");
+			background-position: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="buttonBox carousel__control" id="centerBox">
+		<div class="button bgRed" data-info="like"><i class="fa fa-heart"></i></div>
+		<div class="button bgGray" data-info="dislike"><i class="fa fa-remove"></i></div>
+	</div>
+	<div class="buttonBox" id="rightBottomBox">
+		<div class="button bgBlue" id="btn-setting"><i class="fa fa-cog"></i></div>
+	</div>
+	<div class="carousel">
+		<div class="carousel__stage">
+			<div class="spinner spinner--left">
+				<div class="spinner__face js-active">
+					<div class="content" data-type="now">
+						<div class="content__left">
+						</div>
+						<div class="content__right">
+							<div class="content__main">
+								<div class="info">
+									<h3>東山奈央</h3>
+									<p>东山大法好！</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="spinner__face">
+					<div class="content" data-type="next">
+						<div class="content__left">
+						</div>
+						<div class="content__right">
+							<div class="content__main">
+								<div class="info">
+									<h3>三森すずこ</h3>
+									<p>我森美如画。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  Poor man's preloader -->
+	<div id="imgBox" style="height: 0; width: 0; overflow: hidden">
+		<img src="images/next.jpg">
+		<img src="images/now.jpg">
+	</div>
+
+	<div id="mask"><i class="fa fa-heart"></i></div>
+
+	<div id="chatBox" style="display: none">
+		<div id="contentBox">
+			<div class="bar bar-title"></div>
+			<div id="chatRecords">
+			</div>			
+		</div>
+		<div id="inputBox">
+			<div class="bar">
+				<button id="emojiBtn"><i class="fa fa-smile-o"></i></button>
+				<button id="sendBtn">发送</button>
+			</div>
+			<textarea id="textarea" autofocus="autofocus"></textarea>	
+		</div>
+	</div>
+</body>
+
+<script src="js/jquery.js"></script>
+<script src="js/color-thief.min.js"></script>
+<script src="js/getMainColor.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/flush.js"></script>
+<script src="js/chat.js"></script>
+<script>
+    $(document).ready(function(){
+    	initAnimate();
+		// showChatBox("这是标题");
+		// addServerMsg("buha");
+    });
+
+	function initStage(){
+		return $('.content__right').eq(2);
+	}
+
+	$('#btn-setting').click(function(){
+    	setImg("images/cc.jpg");
+    	setInfo($('.content__main').eq(3),"冯唐","我不要天上的星星，我要尘世的幸福");
+		// hideChatBox("用户名","简介");
+	});
+</script>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PinkMeet-注册</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/register.css">
+	<link rel="icon" href="images/icon.png">
+</head>
+<body>
+	<div id="stage">
+		<div id="title" class="part">
+			<!-- PinkMeet -->
+			<img src="images/logo.png" alt="PinkMeet" height="100%">
+		</div>
+		<div id="content" class="part">
+			<form action="#" method="post">
+			<table>
+				<tr>
+					<td>
+						<label for="username">用户名：</label>
+					</td>
+					<td>
+						<input type="text" id="username"  class="text-field">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="phone">电话号码：</label>
+					</td>
+					<td>
+						<input type="text" id="phone" class="text-field">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="password">密码：</label>
+					</td>
+					<td>
+						<input type="password" id="password" class="text-field">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="rePassword">确认密码：</label>
+					</td>
+					<td>
+						<input type="password" id="rePassword" class="text-field">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="gender">性别：</label>
+					</td>
+					<td id="gender">
+						<input type="radio" name="gender" value="male"> 男
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="gender" value="female"> 女
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="bio">个人简介：</label>
+					</td>
+					<td>
+						<textarea id="bio"></textarea>
+					</td>
+				</tr>
+			</table><br>
+			<tr>
+				<td>
+					<button id="signup-btn" class="btn">注册</button>
+				</td>
+				<td>
+					已有账号？<a href="index.html" class="link">登录</a>
+				</td>
+			</tr>
+			</form>
+		</div>
+		<div id="error-board" class="part">
+			<p>错误提示</p>
+			<ol>
+			</ol>
+		</div>
+	</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/formCheck.js"></script>
+<script>
+	$('form').submit(signUp);
+	function signUp(){
+		var infoObjArr = [];
+		infoObjArr['username'] = $('#username');
+		infoObjArr['phone'] = $('#phone');
+		infoObjArr['password'] = $('#password');
+		infoObjArr['rePassword'] = $('#rePassword');
+		infoObjArr['gender'] = $('#gender');
+
+		return formCheck(infoObjArr);
+	}
+
+	function formCheck(infoObjArr){
+		var alertInfoArr = [];
+
+		for( item in infoObjArr ){
+			var obj = infoObjArr[item]
+			var checkFunc = obj.attr("id") + "Check";
+
+			var result = "";
+
+			if( obj.attr("id") == "rePassword" ){
+				result = eval(checkFunc+"(getValue($('#password')),getValue(obj))");
+			}else{
+				result = eval(checkFunc+"(getValue(obj))");
+			}
+			
+			if( result != "" ){
+				alertInfoArr.push(result);
+			}
+		}
+
+		if( alertInfoArr.length > 0 ){
+			showAlert(alertInfoArr);
+
+			return false;
+		}else{
+			$('#error-board').hide(100);
+
+			return true;
+		}
+	}
+</script>
+</html>
