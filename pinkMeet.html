@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<!-- 本文件有注释 -->
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +11,30 @@
 	<link rel="stylesheet" href="css/chat.css">
 	<link rel="icon" href="images/icon.png">
 	<style>
+	/*这里定义了默认两张图片的路径*/
+	/*但是单从这里引入是不够的！*/
+	/*还要从下边的#imgBox里再加以引入才可以，但是不用担心，我写了一个函数setImg(图片地址),可以很方便的引入图片*/
 		[data-type="now"] .content__left {
 			background-image: url("images/now.jpg");
 			background-position: center;
-		}		
+		}
+		/*
+		这一张是显示的一张，然后下一张是将要显示的（一共就有这么两个位置存图片）
+		对于图片不断更新的逻辑是，不断的更换下一张图片，以达到显示所有图片的目的。
+		*/
 
 		[data-type="next"] .content__left {
 			background-image: url("images/next.jpg");
 			background-position: center;
 		}
+
+		/*
+			然后，不仅图片要换，右边信息展示区域的背景色以及这个区域的文字颜色也要跟着更换，
+			当然还有用户名和个人简介也要随之更换。
+			图片以及背景色文字颜色的更换等都封装在了setImg()里了，所以调用一次就自动跟着都换了。
+			用户名和签名的更换封装在了setInfo($('.content__main').eq(3),用户名,简介)这个函数里了，只要调用一次就能更换。
+			这个函数的第一个参数的值不要改，那是在哪里放这俩信息，经过测试，只能是这个值。
+		*/
 	</style>
 </head>
 
@@ -97,16 +112,28 @@
 <script src="js/chat.js"></script>
 <script>
     $(document).ready(function(){
-    	initAnimate();
+    	initAnimate();//这个函数必须在DOM加载完成时调用，作用是初始化3D旋转的动画
+		
 		// showChatBox("这是标题");
-		// addServerMsg("buha");
+		//这个函数完成初始化聊天窗口
+
+		// addServerMsg("对方的消息");
+		//这个函数向聊天窗口中添加对方发来的消息
+
+		// addClientMsg("我发出的消息");
+		//这个函数向聊天窗口中添加我放发出的消息
+		/*
+			以上两个关于聊天信息发送的函数只能完成前端的显示，
+			目前还不具备与后端交换信息的功能
+		*/
     });
 
 	function initStage(){
 		return $('.content__right').eq(2);
 	}
+	//这个函数是为聊天窗口初始化做准备工作的，不能修改
 
-	$('#btn-setting').click(function(){
+	$('#btn-setting').click(function(){//这里定义了“设置”按钮的功能
     	setImg("images/cc.jpg");
     	setInfo($('.content__main').eq(3),"冯唐","我不要天上的星星，我要尘世的幸福");
 		// hideChatBox("用户名","简介");
