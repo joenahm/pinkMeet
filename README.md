@@ -9,6 +9,12 @@
 
 主体页：[pinkMeet.html](pinkMeet.html)
 
+信息查看页：[info.html](info.html)
+
+信息修改页：[edit.html](edit.html)
+
+图片上传页：[upload.html](upload.html)
+
 所有页面的布局文件：[css](css)
 
 所有页面的js函数库：[js](js)
@@ -19,3 +25,8 @@
 
 - 登录注册（包含表单验证）
 - 主体前端驱动（包括换图、换颜色、换字色、聊天发送接收等）
+- 信息修改、图片上传
+
+**尚未完成**
+
+- 前后端接口连接

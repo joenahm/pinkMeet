@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PinkMeet-更换照片</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/register.css">
+	<link rel="icon" href="images/icon.png">
+	<style>
+        .LUploader-list,li{
+            width: 100%;
+            height: 350px;
+            list-style: none;
+            background-position: center;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .LUploader-list{
+        	border: 1px #ccc solid;
+        }
+        .LUploader-list span{
+        	background: #f80;
+        	color: #fff;
+        }
+        input{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+	<div id="stage">
+		<div id="title" class="part">
+			<img src="images/logo.png" alt="PinkMeet" height="100%">
+		</div>
+		<div id="content" class="part">
+			<tr>
+				<div class="LUploader">
+			        <div class="LUploader-container">
+			            <input id="pic" data-LUploader='upload-btn' data-Selector='select-btn' data-form-file='basestr' data-upload-type='front' type="file" />
+			            <ul class="LUploader-list" id="preview"></ul>
+			        </div>
+			    </div>
+			</tr><br><br>
+			<tr>
+				<td>
+				    <button id="select-btn" class="btn">选择</button>
+				</td>
+				<td>
+					<button id="upload-btn" class="btn">上传</button>
+				</td>
+			</tr>
+			<tr>
+				<br><br>
+				<td>
+					<a href="info.html" class="link">返回</a>
+				</td>
+			</tr>
+		</div>
+	</div>
+</body>
+<script src="js/LUploader.js"></script>
+<script src="js/upload.js"></script>
+<script>
+	var pic = document.getElementById('pic');
+    initUploader(pic,"http://localhost/p/upload/receive.php");
+</script>
+</html>
